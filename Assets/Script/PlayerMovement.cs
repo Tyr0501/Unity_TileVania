@@ -4,74 +4,132 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
-    Vector2 moveInput;
-    Rigidbody2D myRigidbody2D;
+
 
 
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 7f;
     [SerializeField] float climbSpeed = 5f;
 
+    Vector2 moveInput;
+    Rigidbody2D myRigidbody2D;
     Animator myAnimator;
-    CapsuleCollider2D myCapsuleCollider2D;
+    CapsuleCollider2D myBodyCollider2D;
+    BoxCollider2D myFeetCollider;
+    float gravityScaleAtStart;
+
+    bool isAlive = true;
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
-        myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        myBodyCollider2D = GetComponent<CapsuleCollider2D>();
+        myFeetCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
+        gravityScaleAtStart = myRigidbody2D.gravityScale;
     }
 
     void Update()
     {
         Run();
+        if (!isAlive) { return; }
+
         FlipSprite();
         ClimbLadder();
+        Die();
     }
+    // Lắng nghe sự kiện khi di chuyển lên xuống trái phải
     void OnMove(InputValue value)
     {
+        // lăng nghe sự kiện OnMove để tả về giá trị vector x,y x
+        // Trả về giá trị x khi di chuyển sang trái hoặc phải +-1.0
+        // trả về giá trị y khi di chuyển lên hoặc xuống +-1.0
+
         moveInput = value.Get<Vector2>();
-        Debug.Log(moveInput);
+
     }
 
-    void OnJump(InputValue value) {
-      
-        Debug.Log(myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")));
-        if (!myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
-
-        if(value.isPressed ) {
-            myRigidbody2D.velocity += new Vector2(0f, jumpSpeed);
-        }
-    }
+    // Di chuyển
     void Run()
     {
-        
-        Vector2 playerVelocity = new Vector2(moveInput.x *10,myRigidbody2D.velocity.y);
-
+        // Khi có sự kiện sảy ra sẽ trả về vector x,y
+        // Khởi tạo vị trí x và y
+        Vector2 playerVelocity = new Vector2(moveInput.x * 10, myRigidbody2D.velocity.y);
+        // lấy giá trị khi có sự thay đổi sự kiện của bản phím là -1 và 1 nhân với 10 lực đẩy của nhân vật
         myRigidbody2D.velocity = playerVelocity;
+        // Khi có sự kiện di chuyển thì biến số x sẽ thay đổi
+        // Lấy giá trị x lớn nhất khi dùng hàm > Mathf.Epsilon nếu trả về giá trị lớp nhất thì trả về là true
         bool playerHorizontalSpeed = Mathf.Abs(myRigidbody2D.velocity.x) > Mathf.Epsilon;
+
+        transform.localScale = new Vector2(Mathf.Sign(myRigidbody2D.velocity.x), 1f);
+        // Hình ảnh animator running hoạt động
+        if (!isAlive) { return; }
 
         myAnimator.SetBool("isRunning", playerHorizontalSpeed);
 
     }
-    void FlipSprite()
+
+    // Lắng nghe sự kiện khi nhảy
+    void OnJump(InputValue value)
     {
-        bool playerHorizontalSpeed = Mathf.Abs(myRigidbody2D.velocity.x) > Mathf.Epsilon;
-        if (playerHorizontalSpeed)
+        if (!isAlive) { return; }
+        //  Nếu như khi chạm vào thì trả về !false mới cho nhảy tiếp
+        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
+        // khi Hàm OnJump của input manager khởi tạo và lắng nghe
+        // Sẽ lấy value.isPressed trả về true nếu như có sự kiện false nếu như không có sự kiện
+        if (value.isPressed)
         {
-            transform.localScale = new Vector2(Mathf.Sign(myRigidbody2D.velocity.x), 1f);
+            // new Vector2 (chiều x "Ngang" không thay đổi, chiều y "Dọc")
+            // vị trí hiện tại cộng thêm vị trí khi nhảy là 7
+            myRigidbody2D.velocity += new Vector2(0f, jumpSpeed);
         }
     }
-    void ClimbLadder() {
-        if (!myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing"))) { return; }
+    // Lăng nghe sự kiện khi lật vị trí hình ảnh khi di chuyển sang trái hoặc phải
+    void FlipSprite()
+    {
 
-        Vector2 climbVelocity = new Vector2 (myRigidbody2D.velocity.x, moveInput.y * climbSpeed);
-     
-        myRigidbody2D.velocity = climbVelocity;
-           bool playerHorizontalSpeed = Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon;
+        bool playerHorizontalSpeed = Mathf.Abs(myRigidbody2D.velocity.x) > Mathf.Epsilon;
+        // Mathf.Sign(myRigidbody2D.velocity.x)
+        if (!playerHorizontalSpeed)
+        {
+            transform.localScale = new Vector2(Mathf.Sign(myRigidbody2D.velocity.x), 1f);
 
-       
-        myAnimator.SetBool("isClimbing", playerHorizontalSpeed);
+        }
+
     }
+    // Leo bậc thang
+    void ClimbLadder()
+    {
+        //   Nếu như nhân vật chạm vào bậc thang thì trả về lực hấp giẫn bằng 0
+        if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
+            myRigidbody2D.gravityScale = 0f;
+            Vector2 climbVelocity = new Vector2(myRigidbody2D.velocity.x, moveInput.y * climbSpeed);
+            bool playerHasVerticalSpeed = Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon;
+
+            myRigidbody2D.velocity = climbVelocity;
+            myAnimator.SetBool("isClimbing", playerHasVerticalSpeed);
+        }
+        else
+        {
+            // còn nếu như không đụng vào bậc thàng thì trả về lực hấp giẫn bằng giá trị ban đầu
+            myRigidbody2D.gravityScale = gravityScaleAtStart;
+            myAnimator.SetBool("isClimbing", false);
+            return;
+        }
+    }
+    void Die()
+    {
+
+        if (myBodyCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")) || myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")) || myBodyCollider2D.IsTouchingLayers(LayerMask.GetMask("Hazards")) || myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+            myAnimator.SetBool("isRunning", false);
+            myAnimator.SetTrigger("Dying");
+
+            isAlive = false;
+        }
+    }
+
 }
 
 

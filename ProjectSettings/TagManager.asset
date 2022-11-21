@@ -13,11 +13,11 @@ TagManager:
   - UI
   - Ground
   - Climbing
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Background
+  - Bouncing
+  - Enemy
+  - Hazards
   - 
   - 
   - 
@@ -55,6 +55,15 @@ TagManager:
     locked: 0
   - name: Climbing
     uniqueID: 2750121777
+    locked: 0
+  - name: Bouncing
+    uniqueID: 4006320155
+    locked: 0
+  - name: Hazards
+    uniqueID: 1339492209
+    locked: 0
+  - name: Enemy
+    uniqueID: 2179860857
     locked: 0
   - name: Player
     uniqueID: 2242371503
