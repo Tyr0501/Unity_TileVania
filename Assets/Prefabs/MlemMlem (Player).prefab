@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3231258415413461729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4453064025997214619}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4453064025997214619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3231258415413461729}
+  m_LocalRotation: {x: -0.00087363535, y: 0.066966206, z: 0.006501112, w: 0.9977337}
+  m_LocalPosition: {x: 5.582809, y: -0.6130791, z: 0.55858624}
+  m_LocalScale: {x: 0.9105831, y: 0.9999829, z: 0.99821794}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4739912435144355579}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4739912435144355576
 GameObject:
   m_ObjectHideFlags: 0
@@ -18,7 +49,7 @@ GameObject:
   - component: {fileID: 925353112}
   m_Layer: 8
   m_Name: MlemMlem (Player)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +65,8 @@ Transform:
   m_LocalPosition: {x: 112.61, y: 21.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4453064025997214619}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,7 +129,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2052595793
-  m_SortingLayer: 7
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 994042946, guid: 92d67827334bbe440a98cd466fea3f9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -192,6 +224,9 @@ MonoBehaviour:
   runSpeed: 10
   jumpSpeed: 26.6
   climbSpeed: 5
+  deathKich: {x: 0, y: 0}
+  Bullet: {fileID: 0}
+  Gun: {fileID: 4453064025997214619}
 --- !u!61 &925353112
 BoxCollider2D:
   m_ObjectHideFlags: 0

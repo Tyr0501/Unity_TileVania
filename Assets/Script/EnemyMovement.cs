@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
         moveSpeed = -moveSpeed;
         FlipEnemyFacing();
     }
+
     void FlipEnemyFacing(){
         transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody2D.velocity.x)),1f);
     }
