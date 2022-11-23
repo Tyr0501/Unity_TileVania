@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3231258415413461729}
   m_LocalRotation: {x: -0.00087363535, y: 0.066966206, z: 0.006501112, w: 0.9977337}
-  m_LocalPosition: {x: 5.582809, y: -0.6130791, z: 0.55858624}
+  m_LocalPosition: {x: 0.51, y: -0.39, z: -0.13}
   m_LocalScale: {x: 0.9105831, y: 0.9999829, z: 0.99821794}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 4739912435144355576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 112.61, y: 21.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4453064025997214619}
@@ -155,8 +155,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.021644592, y: -0.09984779}
-  m_Size: {x: 0.71673584, y: 1.7760963}
+  m_Offset: {x: 0.021644592, y: -0.09}
+  m_Size: {x: 0.71673584, y: 1.7609215}
   m_Direction: 0
 --- !u!50 &9118814357094084133
 Rigidbody2D:
@@ -224,7 +224,7 @@ MonoBehaviour:
   runSpeed: 10
   jumpSpeed: 26.6
   climbSpeed: 5
-  deathKich: {x: 0, y: 0}
+  deathKich: {x: 20, y: 20}
   Bullet: {fileID: 0}
   Gun: {fileID: 4453064025997214619}
 --- !u!61 &925353112
@@ -240,7 +240,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.027397156, y: -0.8685093}
+  m_Offset: {x: 0.060871124, y: -0.92675686}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -251,5 +251,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.67367554, y: 0.23991013}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.5065994, y: 0.1338253}
+  m_EdgeRadius: 0.01

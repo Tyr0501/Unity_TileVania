@@ -89,14 +89,16 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnFire(InputValue value)
     {
+
         myAnimator.SetBool("isShoot", true);
         Instantiate(Bullet, Gun.position, transform.rotation);
         StartCoroutine(ShootCoroutine());
 
     }
-    IEnumerator ShootCoroutine(){
+    IEnumerator ShootCoroutine()
+    {
         yield return new WaitForSeconds(0.30f);
-              myAnimator.SetBool("isShoot", false);
+        myAnimator.SetBool("isShoot", false);
     }
 
     // Di chuyển
