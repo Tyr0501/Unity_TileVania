@@ -4,24 +4,23 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private float runSpeed;
+    [SerializeField] private float jumpSpeed ;
+    [SerializeField] private float climbSpeed;
+    [SerializeField] private AudioSource audioShooting;
+    [SerializeField] private Vector2 deathKich = new Vector2();
+    [SerializeField] private GameObject Bullet;
+    [SerializeField] private Transform Gun;
 
+    private Vector2 moveInput;
+    private Animator myAnimator;
+    private Rigidbody2D myRigidbody2D;
+    private BoxCollider2D myFeetCollider;
+    private CapsuleCollider2D myBodyCollider2D;
 
-
-    [SerializeField] float runSpeed = 10f;
-    [SerializeField] float jumpSpeed = 7f;
-    [SerializeField] float climbSpeed = 5f;
-    [SerializeField] Vector2 deathKich = new Vector2();
-    [SerializeField] GameObject Bullet;
-    [SerializeField] Transform Gun;
-    Vector2 moveInput;
-    Rigidbody2D myRigidbody2D;
-    Animator myAnimator;
-    CapsuleCollider2D myBodyCollider2D;
-    BoxCollider2D myFeetCollider;
-    float gravityScaleAtStart;
-
-    bool isAlive = true;
-    GameSession gameSession;
+    private float gravityScaleAtStart;
+    private bool isAlive = true;
+    private GameSession gameSession;
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -90,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     void OnFire(InputValue value)
     {
 
+        audioShooting.Play();
         myAnimator.SetBool("isShoot", true);
         Instantiate(Bullet, Gun.position, transform.rotation);
         StartCoroutine(ShootCoroutine());

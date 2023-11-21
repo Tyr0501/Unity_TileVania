@@ -5,14 +5,13 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float bulletSpeed = 1f;
+    [SerializeField] int damage = 1;
     Rigidbody2D myRigidbody2d;
-    CapsuleCollider2D myCapsuleCollider2D;
     PlayerMovement player;
     float xSpeed;
     void Start()
     {
         myRigidbody2d = GetComponent<Rigidbody2D>();
-        myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         player = FindObjectOfType<PlayerMovement>();
         xSpeed = player.transform.localScale.x * bulletSpeed;
         transform.localScale = new Vector2(player.transform.localScale.x, 1f);
@@ -28,7 +27,9 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
+            EnemyMovement enemy = other.gameObject.GetComponent<EnemyMovement>();
+            if(enemy != null) 
+                enemy.Attacked(damage);
         }
         Destroy(gameObject);
     }
@@ -36,7 +37,9 @@ public class Bullet : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Destroy(other.gameObject);
+            EnemyMovement enemy = other.gameObject.GetComponent<EnemyMovement>();
+            if (enemy != null)
+                enemy.Attacked(damage);
         }
 
     }

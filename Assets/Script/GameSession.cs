@@ -59,4 +59,9 @@ public class GameSession : MonoBehaviour
         Destroy(gameObject);
 
     }
+    public void AddLife()
+    {
+        playerLives += 1;
+        livesText.text = playerLives.ToString();
+    }
 }

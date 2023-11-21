@@ -7,9 +7,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3838770000457843892, guid: 59ffb59c16603c44f80ceb0a56169cdd, type: 3}
+      propertyPath: coinPickupSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d950d75e53dab9d4d9ddd856a87448f9, type: 3}
     - target: {fileID: 7939629885544470162, guid: 59ffb59c16603c44f80ceb0a56169cdd, type: 3}
       propertyPath: m_Name
-      value: Coin (14)
+      value: Pig Coin
       objectReference: {fileID: 0}
     - target: {fileID: 7939629885544470165, guid: 59ffb59c16603c44f80ceb0a56169cdd, type: 3}
       propertyPath: m_RootOrder
@@ -67,5 +71,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9131913277148158738, guid: 59ffb59c16603c44f80ceb0a56169cdd, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d950d75e53dab9d4d9ddd856a87448f9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59ffb59c16603c44f80ceb0a56169cdd, type: 3}

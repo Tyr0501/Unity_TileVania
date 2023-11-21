@@ -16,12 +16,32 @@ PrefabInstance:
       value: Impatient Goober (Enemy) (4) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1106243861637635012, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
+      propertyPath: audioHitE
+      value: 
+      objectReference: {fileID: 6942701205858023405}
+    - target: {fileID: 1106243861637635012, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
       propertyPath: moveSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1106243861637635012, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
+      propertyPath: _lifeEnemy
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1106243861637635013, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1106243861637635013, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1106243861637635013, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1106243861637635013, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1106243861637635013, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63,6 +83,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1106243861637635013, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1106243861637635014, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
       propertyPath: m_Color.b
       value: 0.4292453
@@ -77,3 +101,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
+--- !u!82 &6942701205858023405 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2799045659015446122, guid: e18ce3940bbbfa544a4f5e457889e5a8, type: 3}
+  m_PrefabInstance: {fileID: 5080439453812590983}
+  m_PrefabAsset: {fileID: 0}

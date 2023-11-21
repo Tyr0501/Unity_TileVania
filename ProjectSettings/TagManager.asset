@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Heart
   layers:
   - Default
   - TransparentFX
@@ -74,4 +75,7 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 2303657245
+    locked: 0
+  - name: Heart
+    uniqueID: 2594754581
     locked: 0
