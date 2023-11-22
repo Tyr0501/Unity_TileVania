@@ -8,29 +8,43 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private int _lifeEnemy;
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] private AudioSource audioHitE;
+
     Rigidbody2D myRigidbody2D;
-    BoxCollider2D myBoxCollider2D;
+    [SerializeField] BoxCollider2D myBoxBottomCollider2D;
+    [SerializeField] BoxCollider2D myBoxMidCollider2D;
     Color _colorNormal;
     void Start()
     {
         _colorNormal = spriteRenderer.color;
         myRigidbody2D = GetComponent<Rigidbody2D>();
-        myBoxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
-        if (!myBoxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!myBoxBottomCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             FlipEnemyFacing();
         }
+
+        //if (myBoxMidCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        //{
+        //    moveSpeed = -moveSpeed;
+        //    FlipEnemyFacing();
+        //}
+
+
         myRigidbody2D.velocity = new Vector2(moveSpeed, 0f);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        moveSpeed = -moveSpeed;
-        FlipEnemyFacing();
+        if(other.gameObject.tag == "Ground")
+        {
+            Debug.Log("Tag");
+            moveSpeed = -moveSpeed;
+            FlipEnemyFacing();
+        }
+       
     }
     public void Attacked(int damage)
     {

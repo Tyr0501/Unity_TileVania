@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1106243861637635012}
   - component: {fileID: 1106243861637635019}
   - component: {fileID: 2799045659015446122}
+  - component: {fileID: 5133645008913041989}
   m_Layer: 11
   m_Name: Goober (Enemy)
   m_TagString: Enemy
@@ -161,8 +162,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1106243861637635014}
   _lifeEnemy: 5
-  audioHitE: {fileID: 2799045659015446122}
   moveSpeed: 1
+  audioHitE: {fileID: 2799045659015446122}
+  myBoxBottomCollider2D: {fileID: 1106243861637635019}
+  myBoxMidCollider2D: {fileID: 5133645008913041989}
 --- !u!61 &1106243861637635019
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -285,3 +288,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &5133645008913041989
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106243861637635010}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.13, y: 0.05}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.8888888, y: 1.7222222}
+    newSize: {x: 1.0625, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.02, y: 0.18}
+  m_EdgeRadius: 0
