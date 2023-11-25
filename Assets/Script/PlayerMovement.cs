@@ -86,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+  
     void OnFire(InputValue value)
     {
 

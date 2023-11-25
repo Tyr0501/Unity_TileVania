@@ -26,11 +26,7 @@ public class EnemyMovement : MonoBehaviour
             FlipEnemyFacing();
         }
 
-        //if (myBoxMidCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
-        //{
-        //    moveSpeed = -moveSpeed;
-        //    FlipEnemyFacing();
-        //}
+   
 
 
         myRigidbody2D.velocity = new Vector2(moveSpeed, 0f);
@@ -40,7 +36,6 @@ public class EnemyMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "Ground")
         {
-            Debug.Log("Tag");
             moveSpeed = -moveSpeed;
             FlipEnemyFacing();
         }
